@@ -1,0 +1,47 @@
+name: Deploy static directory to Pages
+
+# Set triggers.
+on:
+  push:
+    branches: ["main"]
+
+  # Allow running manually.
+  workflow_dispatch:
+
+# Set GITHUB_TOKEN permissions.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Set concurrency.
+concurrency:
+  # Jump to latest queued run.
+  group: "pages"
+  # Do not cancel in-progress runs.
+  cancel-in-progress: false
+
+# Set jobs.
+jobs:
+  # Deploy static directory.
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout.
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Setup Pages.
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      # Upload static directory.
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './static'
+      # Deploy.
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

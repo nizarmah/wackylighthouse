@@ -9,6 +9,7 @@
 
 # But not these files...
 !/.gitignore
+!/.github/workflows/*.yml
 
 !*.go
 !go.sum
