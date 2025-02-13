@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>NO_LCP - Wacky Lighthouse</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="base.css" />
+  </head>
+  <body>
+    <!-- Taken from https://stackoverflow.com/a/73833232/5512292 -->
+    <canvas id="canvas"></canvas>
+
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "green";
+      ctx.fillRect(10, 10, 20, 20);
+    </script>
+  </body>
+</html>
